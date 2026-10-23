@@ -4,28 +4,33 @@ import type { Group } from './model.ts'
 // Each key must appear in its name; link keys only need to be unique within their group.
 export const groups: Group[] = [
   {
-    name: 'dev',
-    key: 'd',
-    links: [
-      { name: 'GitHub', url: 'https://github.com', key: 'g' },
-      { name: 'MDN', url: 'https://developer.mozilla.org', key: 'm' },
-      { name: 'Stack Overflow', url: 'https://stackoverflow.com', key: 's' },
-    ],
-  },
-  {
     name: 'work',
     key: 'w',
     links: [
-      { name: 'Mail', url: 'https://mail.google.com', key: 'm' },
-      { name: 'Calendar', url: 'https://calendar.google.com', key: 'c' },
+      { name: 'TLMS', url: 'https://tlms.cku.ac.kr', key: 't' },
+      { name: 'GitHub', url: 'https://github.com', key: 'g' },
+      { name: 'Drive', url: 'https://drive.google.com', key: 'd' },
+      { name: 'Gmail', url: 'https://mail.google.com', key: 'm' }
     ],
   },
   {
     name: 'media',
     key: 'm',
     links: [
+      { name: 'Instagram', url: 'https://www.instagram.com', key: 'i' },
+      { name: 'X', url: 'https://x.com', key: 'x' },
       { name: 'YouTube', url: 'https://www.youtube.com', key: 'y' },
-      { name: 'Hacker News', url: 'https://news.ycombinator.com', key: 'h' },
+      { name: 'Netflix', url: 'https://www.netflix.com', key: 'n' }
+    ],
+  },
+  {
+    name: 'explore',
+    key: 'e',
+    links: [
+      { name: 'Naver Map', url: 'https://map.naver.com', key: 'n' },
+      { name: 'Google Maps', url: 'https://maps.google.com', key: 'g' },
+      { name: 'Coupang', url: 'https://www.coupang.com', key: 'c' },
+      { name: 'CatchTable', url: 'https://app.catchtable.co.kr', key: 't' }
     ],
   },
 ]
