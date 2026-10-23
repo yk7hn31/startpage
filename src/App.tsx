@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { groups } from './bookmarks'
 
-// Lowercased name with its key letter in a reverse-video block, but only while that key works.
+// Lowercased name with its key letter in a reverse-video block while that key works,
+// or an outline of the same size while it doesn't, so the label never changes width.
 function Label({ name, hotkey, active }: { name: string; hotkey: string; active: boolean }) {
   const text = name.toLowerCase()
-  if (!active) return text
   const i = text.indexOf(hotkey.toLowerCase())
+  const className = ['key', i === 0 && 'start', !active && 'idle'].filter(Boolean).join(' ')
   return (
     <>
       {text.slice(0, i)}
-      <span className={i === 0 ? 'key start' : 'key'}>{text[i]}</span>
+      <span className={className}>{text[i]}</span>
       {text.slice(i + 1)}
     </>
   )
