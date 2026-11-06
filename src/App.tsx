@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { groups } from './bookmarks'
+import { keyCode } from './model.ts'
 
 // Lowercased name with its key letter in a reverse-video block while that key works,
 // or an outline of the same size while it doesn't, so the label never changes width.
@@ -23,19 +24,19 @@ export function App() {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.ctrlKey || e.altKey || e.repeat) return
-      if (e.key === 'Escape') return setOpen(null)
-      const key = e.key.toLowerCase()
+      // Match physical keys (e.code), not typed characters, so layouts and IMEs don't matter.
+      if (e.code === 'Escape') return setOpen(null)
 
       // Collapsed: plain keys pick a group; leave ⌘ shortcuts to the browser.
       if (open === null) {
         if (e.metaKey) return
-        const i = groups.findIndex((g) => g.key.toLowerCase() === key)
+        const i = groups.findIndex((g) => keyCode(g.key) === e.code)
         if (i !== -1) setOpen(i)
         return
       }
 
       // Open: every key belongs to this group's links; ⌘ opens a new tab.
-      const link = groups[open].links.find((l) => l.key.toLowerCase() === key)
+      const link = groups[open].links.find((l) => keyCode(l.key) === e.code)
       if (!link) return
       e.preventDefault()
       if (e.metaKey) window.open(link.url, '_blank', 'noopener')

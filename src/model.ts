@@ -23,12 +23,19 @@ export function validate(groups: Group[]): string[] {
   return errors
 }
 
-// Keys must be a single character found in the name, unique among siblings.
+// Physical key (KeyboardEvent.code) for a configured key, so it matches regardless of
+// keyboard layout or IME: "f" is the F key whether it types f, F, or ㄹ.
+export function keyCode(key: string): string {
+  const k = key.toUpperCase()
+  return /^[0-9]$/.test(k) ? `Digit${k}` : `Key${k}`
+}
+
+// Keys must be a single letter or digit found in the name, unique among siblings.
 function checkKeys(items: { name: string; key: string }[], errors: string[]) {
   const seen = new Map<string, string>()
   for (const { name, key } of items) {
     const k = key.toLowerCase()
-    if ([...k].length !== 1) errors.push(`"${name}": key "${key}" must be a single character`)
+    if (!/^[a-z0-9]$/.test(k)) errors.push(`"${name}": key "${key}" must be a single letter a-z or digit 0-9`)
     else if (!name.toLowerCase().includes(k)) errors.push(`"${name}": key "${key}" not found in name`)
     const other = seen.get(k)
     if (other !== undefined) errors.push(`"${name}": key "${key}" already used by "${other}"`)
