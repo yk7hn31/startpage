@@ -20,7 +20,8 @@ export const groups: Group[] = [
       { name: 'Instagram', url: 'https://www.instagram.com', key: 'i' },
       { name: 'X', url: 'https://x.com', key: 'x' },
       { name: 'YouTube', url: 'https://www.youtube.com', key: 'y' },
-      { name: 'Netflix', url: 'https://www.netflix.com', key: 'n' }
+      { name: 'Netflix', url: 'https://www.netflix.com', key: 'n' },
+      { name: 'fmhy', url: 'https://fmhy.net/video#streaming-sites', key: 'f' }
     ],
   },
   {
